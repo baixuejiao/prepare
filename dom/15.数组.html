@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var a = 1;
+    var arr = [1,2,3]
+    var obj = {
+      name: 'zs',
+      age: 18
+    }
+
+    console.log(typeof(arr))
+    console.log(typeof(obj))
+
+    console.log(Array.isArray(arr))
+    console.log(Array.isArray(obj))
+
+    // 类/构造函数： 具有相同属性和方法的集合
+    // function Person() {
+
+    // }
+
+    // 实例化对象
+    // var p1 = new Person()
+
+    // 判断构造函数
+    console.log(arr.constructor)
+    console.log(obj.constructor)
+    
+
+    // 判断是否是实例化对象
+    console.log(arr instanceof Array)
+
+    // 对象
+    // 1.内置对象
+    // 2.自定义对象
+    // 3.DOM对象
+
+    var o = {
+
+    }
+  
+
+    // 类
+    function Person(name, age) {
+      this.name = name,
+      this.age = age,
+      this.code  = function(){
+        console.log(this.name)
+      }
+    }
+
+    var p1 = new Person('xm', 18)
+    console.log(p1)
+    p1.code()
+
+
+    // p1.code = function(){
+
+    // }
+
+    // p2.code = function(){}
+
+    // 所有的函数下都有一个prototype 这个属性是一个指针 指向原型对象，生明在原型下的属性和方法可以所有的实例化对象所共享
+    // 原型 prototype
+    //声明类 属性写在构造函数中 方法写在原型下
+
+  
+  </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+$red: #ff0036;
+
+$attr: width;
+
+div{
+  width: 100px;
+  height: 100px;
+  padding: {
+    top: 20px;
+    bottom: 40px;
+  }
+
+  span{
+    #{$attr}: 20px;
+    color: $red
+  }
+}
+
+#container{
+  width: 100%;
+  // 属性嵌套
+  padding: {
+    top: 20px;
+    left: 30px
+  }
+
+  &-wrpper{
+    width: 1280px;
+    height: add(400px+500px)
+  }
+}
+
+// 自定义方法 @function 定义 @return 返回值
+@function addWidth($w1, $w2){
+  @return $w1 / $w2;
+}
+// 自定以方法的调用 方法名()
+#container{
+  width: addWidth(100%,7);
+  height: floor(5.6);
+}
+
+/* from through */
+@for $i from  1 through 3{
+  .item-#{$i}{
+    width: 100px;
+    height: 200px;
+  }
+}
+
+/* from to */
+@for $i from  1 to 3{
+  .item-#{$i}{
+    width: 100px;
+    height: 200px;
+  }
+}
+
+

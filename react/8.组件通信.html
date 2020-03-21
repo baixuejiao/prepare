@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script src="./react.development.js"></script>
+  <script src="./react-dom.development.js"></script>
+  <script src="./browser.min.js"></script>
+
+  <script type="text/babel">
+    class Parent extends React.Component{
+      constructor(params){
+        super(params)
+
+        this.state = {
+          num: 1
+        }
+
+        this.addFun = this.addFun.bind(this)
+      }
+
+      addFun() {
+        this.setState({
+          num: this.state.num+1
+        })
+      }
+
+      render() {
+        return (
+          <div>
+            <h1>父组件</h1>
+            <p>num: {this.state.num}</p>  
+
+            <Child parent={this} addFun={this.addFun}/>
+          </div>
+        )
+      }
+    }
+
+    class Child extends React.Component {
+      constructor(params){
+        super(params)
+      }
+
+      add() {
+        console.log(this.props.parent)
+        // this.props.parent.setState({
+        //   num: this.props.parent.state.num + 1
+        // })
+
+        // this.props.parent.addFun()
+        this.props.addFun()
+      }
+
+      render() {
+        return (
+          <div>
+            <h1>子组件</h1>
+            <button onClick={this.add.bind(this)}>点击+1</button>
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(<Parent/>, document.getElementById('app'))
+  
+  </script>
+</body>
+</html>

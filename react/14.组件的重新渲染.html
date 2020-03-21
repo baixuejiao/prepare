@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script src="./browser.min.js"></script>
+  <script src="./react.development.js"></script>
+  <script src="./react-dom.development.js"></script>
+
+  <script type="text/babel">
+    class Main extends React.Component{
+      constructor(params) {
+        super(params)
+
+        this.state = {
+          num: 0
+        }
+        this.a = 1
+      }
+      change() {
+        this.setState({
+          num: this.state.num+1
+        })
+      }
+
+      fun(){
+        this.a++
+        this.forceUpdate()
+      }
+    
+      
+      render() {
+        console.log('渲染了')
+        return(
+          <div> 
+            <p>a:{this.a}</p>
+            <p>{this.state.num}</p>
+            <p>{this.props.number}</p>
+            <button onClick={this.change.bind(this)}>修改num</button>
+            <button onClick={this.fun.bind(this)}>修改a</button>
+          </div>
+        )
+      }
+    }
+
+    class Parent extends React.Component{
+      constructor(params) {
+        super(params)
+
+        this.state = {
+          number: 0
+        }
+      }
+      change() {
+        this.setState({
+          number: this.state.number+1
+        })
+      }
+    
+      
+      render() {
+        console.log('渲染了')
+        return(
+          <div>  
+            <Main number={this.state.number}/>
+            <button onClick={this.change.bind(this)}>修改number</button>
+          </div>
+        )
+      }
+    }
+
+    
+
+
+
+    ReactDOM.render(<Parent/>, document.getElementById('app'))
+  
+  
+  </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+    }
+
+    
+
+    .container{
+      width: 300px;
+      border-radius: 4px;
+      background: #fefefe;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .container header{
+      padding: 0 20px;
+      height: 30px;
+      line-height: 30px;
+      border-bottom: 1px solid #ccc;
+    }
+    .close{
+      float: right;
+    }
+
+    
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div>
+      <button @click="goLogin">登录</button>
+      <button @click="goReg">注册</button>
+    </div>
+
+    <pop title="登录" v-if="isLogin" :hide="hide" @hide="hide"> 
+      <div>
+        <label for="">用户名：</label>
+        <input type="text">
+      </div>
+      <div>
+        <label for="">密码</label>
+        <input type="text">
+      </div>
+    </pop>
+
+    <pop title="注册" v-if="isRegister" :hide="hide" @hide="hide">
+      <div>
+        <label for="">用户名：</label>
+        <input type="text">
+      </div>
+      <div>
+        <label for="">密码</label>
+        <input type="text">
+      </div>
+      <div>
+        <label for="">确认密码</label>
+        <input type="text">
+      </div>  
+    </pop>
+
+  </div>
+
+  <template id="dialog">
+    <div class="container">
+      <header>
+        {{title}}
+        <span class="close" @click="close">X</span>
+      </header>
+      <div id="content">
+        <slot></slot>
+      </div>
+      <div id="footer">
+        <button @click="closeDia">{{title}}</button>
+      </div>
+    </div>
+  </template>
+
+  
+  <script src="./vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        isLogin: false,
+        isRegister: false
+      },
+      components: {
+        'pop': {
+          template: '#dialog',
+          props: ['title','hideDia'],
+          methods: {
+            closeDia() {
+              this.hide()
+            },
+            close() {
+              console.log(123)
+              this.$emit('hide')
+            }
+          }
+        }
+      },
+      methods: {
+        goLogin() {
+          this.isLogin = true
+          this.isRegister = false
+        },
+        goReg() {
+          this.isLogin = false
+          this.isRegister = true
+        },
+        hide() {
+          this.isLogin = false
+          this.isRegister = false
+        }
+      }
+    })
+    
+  </script>
+</body>
+</html>

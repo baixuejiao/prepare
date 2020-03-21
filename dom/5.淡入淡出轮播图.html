@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    #container{
+      width: 750px;
+      height: 291px;
+      margin: 100px auto 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #slider{
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    #slider>img{
+      width: 750px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: opacity 1s ease;
+    }
+
+    #pointer{
+      position: absolute;
+      margin-left: -150px;
+      left: 50%;
+      bottom: 30px;
+    }
+
+    #pointer>li{
+      float: left;
+      width: 50px;
+      height: 5px;
+      margin: 0 5px;
+      list-style: none;
+      background: rgba(0,0,0,0.6);
+      cursor: pointer;
+    }
+    #pointer>.select{
+      background: #fff;
+    }
+
+    
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="slider">
+      <img style="opacity: 1;" src="../images/1.jpg" alt="">
+      <img src="../images/2.jpg" alt="">
+      <img src="../images/3.jpg" alt="">
+      <img src="../images/4.jpg" alt="">
+      <img src="../images/5.jpg" alt="">
+    </div>
+
+    <ul id="pointer">
+      <li class="select"></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+
+    <script>
+      var oContainer = document.getElementById('container');
+      var oSlider = document.getElementById('slider');
+      var aLi = document.getElementsByTagName('li');
+      var aImg = document.getElementsByTagName('img');
+
+      var oLeft = document.getElementById('left');
+      var oRight = document.getElementById('right');
+
+      var Timer;
+
+      var tag = 0;
+
+      for(var i=0; i<aLi.length; i++) {
+        aLi[i].index= i;
+
+        aLi[i].onmouseover =  function() {
+          tag = this.index;
+          change()
+
+        
+          // for(var j=0; j<aLi.length;j++){
+          //   console.log(11)
+          //   aLi[j].className = '';
+          //   aImg[j].className = '';
+          // }
+
+          // aLi[this.index].className="select";
+          // aImg[this.index].className="active";
+        }
+
+
+      }
+
+      function free() {
+        tag++
+        tag = tag == aLi.length ? 0 : tag
+        change()
+      }
+
+      function change() {
+        for(var j=0; j<aLi.length;j++){
+          aLi[j].className = '';
+          aImg[j].style.opacity = 0;
+        }
+
+        aLi[tag].className="select";
+        aImg[tag].style.opacity = 1;
+
+      }
+
+
+      oContainer.onmouseover = function() {
+        clearInterval(Timer);
+      }
+
+      oContainer.onmouseout = function() {
+        goTimer() ;
+      }
+
+      function goTimer() {
+        Timer = setInterval(function() {
+          free()
+        }, 1000)
+      }
+
+      goTimer() ;
+
+
+
+
+    </script>
+  </div>
+</body>
+</html>

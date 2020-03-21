@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script src="./browser.min.js"></script>
+  <script src="./react.development.js"></script>
+  <script src="./react-dom.development.js"></script>
+
+
+  <script type="text/babel">
+
+    class Parent extends React.Component{
+      constructor(params){
+        super(params)
+        this.addFun = this.addFun.bind(this)
+      }
+
+      addFun() {
+        // this.refs.child1.setState({
+        //   num: this.refs.child1.state.num+1
+        // })
+        console.log(this.refs.myInput.value)
+        this.refs.child1.add(this.refs.myInput.value)
+      }
+
+      render() {
+        return(
+          <div>
+            <h1>父组件</h1> 
+            <input type="text" ref="myInput" /> 
+            <button onClick={this.addFun}>点击后子组件number+1</button>
+            <Child ref="child1"/>
+          </div>
+        )
+      }
+    }
+
+    class Child extends React.Component{
+      constructor(params){
+        super(params)
+        this.state = {
+          num: 1
+        }
+        this.add = this.add.bind(this)
+      }
+
+      add(data) {
+        console.log(event)
+        this.setState({
+          num: this.state.num + data * 1
+        })
+      }
+
+      render() {
+        return(
+          <div>
+            <h1>子组件</h1>  
+            <p>num: {this.state.num}</p>
+            <button onClick={this.add}>change num +1</button>
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(<Parent/>, document.getElementById('app'))
+
+  
+  </script>
+</body>
+</html>

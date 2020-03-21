@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    #container{
+      width: 750px;
+      height: 291px;
+      margin: 100px auto 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #slider{
+      width: 3750px;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: left 1s ease;
+    }
+    #slider>img{
+      float: left;
+      width: 750px;
+    }
+    #slider>.active{
+      display: block;
+    }
+
+    #pointer{
+      position: absolute;
+      right: 30px;
+      bottom: 30px;
+    }
+
+    #pointer>li{
+      float: left;
+      width: 22px;
+      height: 22px;
+      margin: 0 5px;
+      text-align: center;
+      line-height: 22px;
+      list-style: none;
+      border-radius: 2px;
+      color: #fff;
+      background: rgba(0,0,0,0.6);
+      cursor: pointer;
+    }
+    #pointer>.select{
+      background: red;
+    }
+
+    #left,
+    #right{
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      margin-top: -25px;
+      text-align: center;
+      color: #fff;
+      background: rgba(0,0,0,0.6);
+      position: absolute;
+      top: 50%;
+    }
+    #left{
+      left: 0;
+    }
+    #left::after{
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin-top: 12px;
+      border-right: 5px solid #fff;
+      border-bottom: 5px solid #fff;
+      -webkit-transform: rotate(135deg);
+      transform: rotate(135deg);
+
+    }
+    #right{
+      right: 0;
+    }
+    #right::after{
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin-top: 12px;
+      border-right: 5px solid #fff;
+      border-bottom: 5px solid #fff;
+      -webkit-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="slider">
+      <img class="active" src="../images/1.jpg" alt="">
+      <img src="../images/2.jpg" alt="">
+      <img src="../images/3.jpg" alt="">
+      <img src="../images/4.jpg" alt="">
+      <img src="../images/5.jpg" alt="">
+    </div>
+
+    <ul id="pointer">
+      <li class="select">1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+    </ul>
+
+    <span id="left"></span>
+    <span id="right"></span>
+    
+    <script>
+      var oContainer = document.getElementById('container');
+      var oSlider = document.getElementById('slider');
+      var aLi = document.getElementsByTagName('li');
+      var aImg = document.getElementsByTagName('img');
+
+      var oLeft = document.getElementById('left');
+      var oRight = document.getElementById('right');
+
+      var Timer;
+
+      var tag = 0;
+
+      for(var i=0; i<aLi.length; i++) {
+        aLi[i].index= i;
+
+        aLi[i].onclick =  function(kk) {
+          console.log(kk)
+          tag = this.index;
+          change()
+
+        
+          // for(var j=0; j<aLi.length;j++){
+          //   console.log(11)
+          //   aLi[j].className = '';
+          //   aImg[j].className = '';
+          // }
+
+          // aLi[this.index].className="select";
+          // aImg[this.index].className="active";
+        }
+
+
+      }
+
+      oRight.onclick = function() {
+        tag++
+        tag = tag == aLi.length ? 0 : tag
+
+        // for(var j=0; j<aLi.length;j++){
+        //   console.log(11)
+        //   aLi[j].className = '';
+        //   aImg[j].className = '';
+        // }
+
+        // aLi[tag].className="select";
+        // aImg[tag].className="active";
+
+        change()
+
+      }
+
+      oLeft.onclick = function() {
+        tag--
+        tag = tag == -1 ? aLi.length-1 : tag
+
+        change()
+
+        // for(var j=0; j<aLi.length;j++){
+        //   console.log(11)
+        //   aLi[j].className = '';
+        //   aImg[j].className = '';
+        // }
+
+        // aLi[tag].className="select";
+        // aImg[tag].className="active";
+      }
+
+      function change() {
+        for(var j=0; j<aLi.length;j++){
+          console.log(11)
+          aLi[j].className = '';
+          // aImg[j].className = '';
+        }
+
+        aLi[tag].className="select";
+        oSlider.style.left = - tag * 750 + 'px';
+        // aImg[tag].className="active";
+      }
+
+
+      oContainer.onmouseover = function() {
+        clearInterval(Timer);
+      }
+
+      oContainer.onmouseout = function() {
+        goTimer() ;
+      }
+
+      function goTimer() {
+        Timer = setInterval(function() {
+          oRight.onclick()
+        }, 1000)
+      }
+
+      goTimer() ;
+
+
+
+
+    </script>
+  </div>
+</body>
+</html>

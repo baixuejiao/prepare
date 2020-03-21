@@ -1,0 +1,208 @@
+#container{
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+#navbar{
+  display: flex;
+  width: 100%;
+  height: 1.01rem;
+  line-height: 1.01rem;
+  background: linear-gradient(135deg, #FFD000 0%, #FFBD00 100%);
+}
+#navbar-city{
+  display: inline-block;
+  margin: 0 0.31rem;
+}
+#navbar-login{
+  width: 0.94rem;
+}
+#navbar-search{
+  flex: 1;
+  height: 0.64rem;
+  line-height: .64rem;
+  border-radius: 0.18rem;
+  margin-top: 0.185rem;
+  font-size: .28rem;
+  color: #999;
+  background: #fff;
+}
+#navbar-search>i{
+  padding: 0 0.15rem;
+}
+#navbar-search>span{
+
+}
+
+#navbar-login{
+  display: inline-block;
+  width: .94rem;
+  text-align: center;
+  font-size: .3rem;
+}
+#download{
+  /* width: 100%; */
+  display: flex;
+  padding: .16rem .3rem;
+  height: .72rem;
+  background: #000;
+}
+
+#download>img{
+  width: 0.72rem;
+}
+#download-text{
+  flex: 1;
+  padding-left: .2rem;
+  font-size: .26rem;
+  color: #fff;
+}
+#download-text:last-child{
+  font-size: .22rem;
+}
+#download-app{
+  width: 1.1rem;
+  height: .6rem;
+  line-height: .6rem;
+  font-size: .24rem;
+  text-align: center;
+  border-radius: .14rem;
+  color: #000;
+  background: linear-gradient(135deg, #FFD000 0%, #FFBD00 100%);
+}
+
+#content{
+  display: flex;
+  width: 100%;
+  background: #fff;
+  flex-wrap:wrap;
+}
+
+#content>li{
+  width: 1.5rem;
+  padding: 0.2rem 0;
+  text-align: center;
+  font-size: 0.24rem;
+}
+#content>li>div{
+  width: 0.8rem;
+  height: 0.8rem;
+  margin: 0 auto 0.14rem;
+  text-align: center;
+  line-height: .8rem;
+  border-radius: 50%;
+}
+
+#content>.ms>div{
+  background: #fd9d21;
+}
+#content>.dy>div{
+  background: #ff6767;
+}
+#content>.jd>div{
+  background: #8a90fa;
+}
+#content>.yl>div{
+  background: #fed030;
+}
+#content>.wm>div{
+  background: #fd9d21;
+}
+#content>.ktv>div{
+  background: #fed030;
+}
+#content>.zby>div{
+  background: #4dc6ee;
+}
+#content>.lr>div{
+  background: #ff80c2;
+}
+#content>.xc>div{
+  background: #fd9d21;
+}
+#content>.all>div{
+  background: #00d3be;
+}
+#content .iconfont{
+  font-size: .5rem;
+  color: #fff;
+}
+#like{
+  margin-top: .2rem;
+  padding-left: .2rem;
+  background: #fff;
+}
+#like-title{
+  font-size: .34rem;
+  padding: .28rem .2rem .2rem 0;
+  position: relative;
+}
+#like-title::after{
+  content: '';
+  display: block;
+  width: 100%;
+  border-top: 1px solid #DDD8CE;
+  transform: scaleY(.5);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.like-list{
+  display: flex;
+  padding: .28rem .2rem .28rem 0;
+  position: relative;
+}
+.like-list::after{
+  content: '';
+  display: block;
+  width: 100%;
+  border-top: 1px solid #DDD8CE;
+  transform: scaleY(.5);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.like-list>img{
+  width: 1.8rem;
+  height: 1.64rem;
+}
+.like-info{
+  flex: 1;
+  padding-left: .2rem;
+  line-height: 1.0;
+}
+.like-info-title{
+  padding: 10px 0 12px;
+  font-size: .3rem;
+  line-height: 1.0;
+}
+.like-list-desc{
+  height: .68rem;
+  font-size: .24rem;
+  color: #666;
+}
+.like-info-tips{
+  width: 100%;
+  position: relative;
+}
+.like-info-price{
+  font-size: .36rem;
+  color: #ff6600;
+}
+.like-info-price:after{
+  content: '元';
+  display: inline-block;
+  font-size: .24rem;
+}
+.like-info-before{
+  font-size: .24rem;
+  color: #666;
+}
+.like-info-all{
+  font-size: .24rem;
+  color: #666;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+

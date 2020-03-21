@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script src="./browser.min.js"></script>
+  <script src="./react.development.js"></script>
+  <script src="./react-dom.development.js"></script>
+
+
+  <script type="text/babel">
+    class Com extends React.Component{
+      constructor(params){
+        super(params)
+      }
+
+      render() {
+        let a = [1,2,3]
+        let arr = []
+        for(let i=0; i<a.length; i++) {
+          arr[i] = <li key={i}>{a[i]}</li>
+        }
+
+        let list = [
+          {
+            name: 'zs',
+            age: 18
+          },
+          {
+            name: 'ls',
+            age: 29
+          },
+          {
+            name: 'xm',
+            age: 20
+          }
+        ]
+
+        let list1 = list.map((item, index) => (
+          <li key={index}>姓名：{item.name} 年龄：{item.age}</li>
+        ))
+
+        return(
+          <div>
+            <ul>
+              {arr}  
+            </ul>  
+
+            <ul>
+              {list1}  
+            </ul>
+
+            <ul>
+              {
+                list.map((item, index) => (
+                  <li key={index}>姓名：{item.name} 年龄：{item.age}</li>
+                ))
+              }  
+            </ul>
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(<Com/>, document.getElementById('app'))
+  
+  </script>
+</body>
+</html>

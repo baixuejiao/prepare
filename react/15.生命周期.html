@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script src="./browser.min.js"></script>
+  <script src="./react.development.js"></script>
+  <script src="./react-dom.development.js"></script>
+
+  <script type="text/babel">
+    class Clock extends React.Component{
+      constructor(params){
+        super(params)
+        this.state = {
+          number: 6
+        }
+      }
+
+      componentDidMount() {
+        console.log('didmount')
+        this.timer = setInterval(() => {
+          console.log(1111)
+          this.setState({
+            number: this.state.number - 1
+          })
+        }, 1000)
+      }
+
+      shouldComponentUpdate(nextprops, nextState) {
+        console.log(nextprops, nextState)
+
+        if(nextState.number<=0) {
+          this.props.stop()
+          return false
+        } else {
+          return true
+        }
+      }
+
+      componentDidUpdate() {
+        console.log('didupdate')
+      }
+
+      componentWillUnmount() {
+        console.log('willunmount')
+        clearInterval(this.timer)
+      }
+
+      render() {
+        console.log('render')
+        return(
+          <div>
+            { this.state.number }秒后重新获取验证码
+          </div>
+        )
+      }
+    }
+    class Main extends React.Component{
+      constructor(params){
+        super(params)
+
+        this.state = {
+          isShow: false
+        }
+
+        this.change = this.change.bind(this)
+      }
+
+      change() {
+        this.setState({
+          isShow: !this.state.isShow
+        })
+      }
+
+      render() {
+        return(
+          <div>
+            <button onClick={this.change}>点击获取验证码</button>
+            {
+              this.state.isShow ? <Clock stop={this.change}/> : null
+            }
+            
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(<Main/>, document.getElementById('app'))
+  
+  </script>
+</body>
+</html>

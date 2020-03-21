@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="obj in getList">
+        {{obj.name}}:{{obj.age}}
+      </li>
+    </ul>
+  </div>
+  <script src="./vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        list: [
+          {
+            name: 'zs',
+            age: 18
+          },
+          {
+            name: 'xm',
+            age: 15
+          },
+          {
+            name: 'ls',
+            age: 20
+          },
+          {
+            name: 'jj',
+            age: 17
+          }
+        ]
+      },
+      computed: {
+        getList() {
+          return this.list.filter(value => (
+            value.age >= 18
+          ))
+        },
+        getdata: {
+          get() {
+
+          },
+          set() {
+            
+          }
+        }
+      },
+      watch: {
+
+      }
+    })
+
+
+  </script>
+</body>
+</html>

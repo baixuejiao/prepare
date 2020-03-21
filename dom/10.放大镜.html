@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      left: 0;
+    }
+
+    #big{
+      display: none;
+      float: left;
+      width: 400px;
+      height: 400px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #big>img{
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    #small{
+      float: left;
+      width: 400px;
+      height: 400px;
+      position: relative;
+
+    }
+
+    #drag{
+      display: none;
+      width: 200px;
+      height: 200px;
+      background: rgba(255,255,255,0.6);
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  
+  </style>
+</head>
+<body>
+  <div id="small">
+    <!-- <img src="../images/small.jpg" alt=""> -->
+    <img src="../images/s.png" alt="">
+    <div id="drag"></div>
+  </div>
+
+  <div id="big">
+    <!-- <img src="../images/big.jpg" alt=""> -->
+    <img src="../images/b.png" alt="">
+
+  </div>
+
+  <script>
+    var oSmall = document.getElementById('small');
+
+    var oDrag = document.getElementById('drag');
+
+    var oBig = document.getElementById('big');
+
+    var oImg = oBig.getElementsByTagName('img')[0];
+
+
+    oSmall.onmouseover = function(e) {
+      oDrag.style.display = 'block'
+      oBig.style.display = 'block';
+      // var x = e.clientX;
+      // var y = e.clientY
+
+      oSmall.onmousemove = function(e) {
+        oDrag.style.left = e.clientX - oDrag.offsetWidth / 2 + 'px'
+        oDrag.style.top = e.clientY - oDrag.offsetTop / 2 + 'px'
+
+        if (oDrag.offsetLeft <= 0) {
+          oDrag.style.left = 0
+        }
+        if (oDrag.offsetLeft >= oSmall.offsetWidth - oDrag.offsetWidth) {
+          oDrag.style.left = oSmall.offsetWidth - oDrag.offsetWidth + 'px'
+        }
+
+        if (oDrag.offsetTop <= 0) {
+          oDrag.style.top = 0
+        }
+        if (oDrag.offsetTop >= oSmall.offsetHeight - oDrag.offsetHeight) {
+          oDrag.style.top = oSmall.offsetHeight - oDrag.offsetHeight + 'px'
+        }
+
+        // 小图移动的最大距离
+        var smallx = oSmall.offsetWidth - oDrag.offsetWidth;
+        var smally = oSmall.offsetHeight - oDrag.offsetHeight;
+
+        // 大图移动的最大距离
+        var bigx = oImg.offsetWidth - oBig.offsetWidth;
+        var bigy = oImg.offsetHeight - oBig.offsetHeight;
+
+        // 移动比例
+        var perx = oDrag.offsetLeft / smallx
+        var pery = oDrag.offsetTop / smally
+
+        oImg.style.left = -perx * bigx + 'px'
+        oImg.style.top = -pery * bigy + 'px';
+
+      }
+    }
+
+    oSmall.onmouseout = function() {
+      oDrag.style.display = 'none'
+      oBig.style.display = 'none';
+    }
+  
+  
+  </script>
+</body>
+</html>

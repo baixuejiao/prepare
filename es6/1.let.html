@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+  <!-- 
+    let和var的区别
+    1.let 声明的变量不存在变量提升
+    2.let 声明的变量不可以重复声明
+    3.let 声明的变量在块级作用域内，在定义的作用域外部获取不到对应的变量 ， var定义的有函数作用域和全局作用域
+    4.暂时性死区（当前作用域不允许同名变量进来）在块作用域内 let声明的变量 会形成一个封闭性的死区 只能在声明之后调用，否则就会报错
+
+   -->
+  <script>
+    var a = 10;
+
+    // es6新增定义变量的方式 let
+    let b = 10;
+
+    // 全局作用域
+    // 局部作用域 -> 函数内
+
+    var aLi = document.getElementsByTagName('li')
+
+    for(var i=0; i<aLi.length; i++) {
+      console.log(aLi[i])
+    }
+    console.log(i)
+
+    // es6新增加了块级作用域 {} 代码块内部的
+    for(let j=0; j<aLi.length; j++) {
+      console.log(aLi[j])
+    }
+    console.log(j)
+    
+  
+  </script>
+</body>
+</html>

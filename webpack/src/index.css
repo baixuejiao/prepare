@@ -1,0 +1,5 @@
+div{
+  color: red;
+  background: url('./images/800.jpg');
+  transform: translateX(50px);
+}

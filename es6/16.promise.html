@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // let p1 = new Promise(function(resolve, reject){
+      
+    //   setTimeout(function(){
+    //     let errno = 100
+    //     if (errno * 1 === 0) {
+    //       console.log('请求1成功')
+    //       resolve()
+    //     } else {
+    //       console.log('请求1失败')
+    //       reject()
+    //     }
+    //   }, 1500)
+
+    // }).then(function() {
+    //   console.log('执行请求1成功后内容')
+    // }, function() {
+    // })
+
+
+    // let p1 = new Promise(function(resolve, reject){
+      
+    //   setTimeout(function(){
+    //     let errno = 100
+    //     if (errno * 1 === 0) {
+    //       console.log('请求1成功')
+    //       resolve()
+    //     } else {
+    //       console.log('请求1失败')
+    //       reject()
+    //     }
+    //   }, 1500)
+
+    // }).then(function() {
+    //   console.log('执行请求1成功后内容')
+    // }).catch(function() {
+    //   console.log('执行请求1失败后内容')
+    // })
+
+    let p1 = new Promise(function(resolve, reject){
+      console.log('执行请求1')
+      setTimeout(function(){
+        let errno = 0
+        if (errno * 1 === 0) {
+          console.log('请求1成功')
+          resolve()
+        } else {
+          console.log('请求1失败')
+          reject()
+        }
+      }, 1500)
+
+    }).then(function() {
+      console.log('执行请求1成功后内容')
+      return new Promise(function(resolve, reject){
+        console.log('执行请求2')
+
+        setTimeout(function(){
+
+          let errno = 1
+
+          if(errno * 1 ===0) {
+            resolve()
+          } else {
+            reject()
+          }
+
+        }, 2000)
+
+      })
+
+    },function(){
+      console.log('执行请求1失败后内容')
+    }).then(function() {
+      console.log('2-success')
+    }).catch(function() {
+      console.log('2-error')
+    })
+  
+  
+  </script>
+</body>
+</html>

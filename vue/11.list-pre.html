@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <label for="all">是否需要额外设施？</label>
+      <input type="checkbox" id="all" v-model="isShow">
+    </header>
+
+    <ul v-show="isShow">
+      <li v-for="item in list">
+        <label :for="item.id">{{item.name}} ( {{item.price}} )</label>
+        <input  :id="item.id" type="checkbox" :value="item" v-model="orderList">
+      </li>
+    </ul>
+
+    <div>
+      <p>订单费用信息</p>
+      <ul>
+        <li v-for="item in orderList">
+          {{item.name}} ({{item.price}})
+        </li>
+      </ul>
+    </div>
+
+    <p>总金额： {{total}}</p>
+  </div>
+
+  <script src="./vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        isShow: false,
+        list: [
+          {
+            id: 'list1',
+            name: '沙发',
+            price: 12
+          }, {
+            id: 'list2',
+            name: '电脑',
+            price: 50
+          }, {
+            id: 'list3',
+            name: 'WIFI',
+            price: 100
+          }
+        ],
+        orderList: [
+          {
+            name: '群力花园豪华型',
+            price: 400
+          }
+        ]
+      },
+      computed: {
+        total() {
+          let count = 0
+          this.orderList.forEach((item, index) => {
+            count += item.price
+          })
+          return count
+        }
+      },
+      methods: {
+        // del() {
+        //   console.log(this.isShow)
+        //   if (!this.isShow) {
+        //     this.orderList.splice(1)
+        //   }
+        // }
+      },
+      watch: {
+        isShow: function(newVal, oldVal) {
+          console.log(newVal, oldVal)
+          if (!newVal) {
+            this.orderList.splice(1)
+          }
+        }
+      }
+    })
+  </script>
+
+</body>
+</html>

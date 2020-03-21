@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+    }
+
+    #container{
+      width: 400px;
+      height: 250px;
+      margin: 50px auto;
+      border: 1px solid red;
+      position: relative;
+      /* overflow: hidden; */
+    }
+
+    #container>ul{
+      width: 520px;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    li{
+      float: left;
+      width: 120px;
+      height: 120px;
+      margin: 0 5px;
+      line-height: 120px;
+      text-align: center;
+      list-style: none;
+      color: #fff;
+      background: pink;
+    }
+
+    #footer{
+      width: 100%;
+      text-align: center;
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+    }
+    #footer>span{
+      display: inline-block;
+      width: 100px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      color: #fff;
+      background: plum;
+    }
+  
+  
+  </style>
+</head>
+<body>
+  <div id="container">
+    <ul id="wrapper">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+    </ul>
+
+    <div id="footer">
+      <span id="left">left</span>
+      <span id="right">right</span>
+    </div>
+  </div>
+
+  <script>
+    var oWrapper = document.getElementById('wrapper');
+
+    var oLeft = document.getElementById('left');
+    var oRight = document.getElementById('right');
+
+    oWrapper.innerHTML += oWrapper.innerHTML
+    oWrapper.style.width = oWrapper.offsetWidth*2+'px'
+    
+    var speed = -10;
+
+    // setInterval(function() {
+    //   oWrapper.style.left = oWrapper.offsetLeft + speed + 'px'
+
+    //   if(oWrapper.offsetLeft < -oWrapper.offsetWidth/2) {
+    //     oWrapper.style.left = 0
+    //   }
+
+    //   if (oWrapper.offsetLeft > 0) {
+    //     oWrapper.style.left = -oWrapper.offsetWidth / 2 +'px'
+    //   }
+
+    // },100)
+
+    oLeft.onclick = function() {
+      speed = -10
+    }
+
+    oRight.onclick = function() {
+      speed = 10
+    }
+    
+  </script>
+</body>
+</html>

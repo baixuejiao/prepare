@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // function * fun1() {
+    //   console.log('hello')
+      
+    //   yield fun2();
+
+    //   console.log('world')
+    // }
+
+    // function fun2() {
+    //   console.log('this is fun2')
+    //   return 'fun2 is over'
+    // }
+
+    // let fn1 = fun1();
+    // console.log(fn1.next()) // {value: "fun2 is over", done: false}
+    // console.log(fn1.next())
+
+
+    function * fun3(){
+      console.log('准备发送请求1')
+      let res =  yield request1();
+      console.log(res)
+      console.log('准备发送请求2')
+      yield request2(res);
+    }
+
+    function request1() {
+      setTimeout(() => {
+        let obj = {
+          name: 'zs',
+          age: 18
+        }
+        console.log('1-success')
+
+        console.log(fn2.next(obj));
+
+      }, 1000)
+    }
+
+    let fn2 = fun3();
+    console.log(fn2.next())
+
+    function request2(res) {
+      console.log('res:', res)
+      setTimeout(() => {
+        console.log('2-success')
+      }, 800)
+    }
+
+    
+  
+  </script>
+</body>
+</html>

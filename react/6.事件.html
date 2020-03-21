@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script src="./react.development.js"></script>
+  <script src="./react-dom.development.js"></script>
+  <script src="./browser.min.js"></script>
+
+  <script type="text/babel">
+    class Com extends React.Component{
+      constructor(props){
+        super(props)
+        this.a = 1
+        this.state = {
+          num: 1
+        }
+      }
+
+      fun() {
+        // this.a++
+        // console.log(this.a)
+        // alert(123)
+
+        // this.state.num++
+        // console.log(this.state.num)
+
+        this.setState({
+          num: this.state.num+1
+        })
+      }
+
+      render() {
+        return (
+          <div>
+            <p>a: {this.a}</p>
+            <p>num: {this.state.num}</p>
+            <button onClick={this.fun.bind(this)}>按钮</button>  
+          </div>
+        )
+      }
+    }
+  
+    ReactDOM.render(
+      <Com></Com>
+      ,document.getElementById('app'))
+  </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var obj = {
+        name:'zs',
+        age:20
+    }     
+    let p1 = new Proxy({
+      name:'zs',
+      age:20
+    },{
+      // get是获取值之前做的
+      get(target,key,property){
+        console.log('拦截get');
+        return target[key];
+      },
+      // set是改变值之前做的， 一定要有return否则值不会改变
+      set(target,key,val){
+        console.log('拦截set');
+        return target[key] = val;
+      }
+    });
+    p1.name = 'lisi';
+    console.log(p1.name);
+    
+    
+  </script>
+</body>
+</html>

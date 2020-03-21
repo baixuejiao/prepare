@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+
+  </div>
+  <script src="./browser.min.js"></script>
+  <script src="./react.development.js"></script>
+  <script src="react-dom.development.js"></script>
+
+  <script type="text/babel">
+    let oDiv = document.getElementById('app')
+    let name = 'xiaoming'
+    let a = 1
+    let b = 2
+    let _style = {
+      color: '#ff8907',
+      backgroundColor: 'red'
+    }
+    ReactDOM.render(
+      <div>
+        <p style={_style}>hello world</p>
+        hello {name}   
+        <p>sum: {a+b}</p>  
+        <h1 style={{
+          color: 'blue'
+        }}>xiaoming</h1>
+      </div> 
+    , oDiv)
+  </script>
+</body>
+</html>

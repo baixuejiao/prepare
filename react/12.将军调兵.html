@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script src="./browser.min.js"></script>
+  <script src="./react.development.js"></script>
+  <script src="./react-dom.development.js"></script>
+
+  <script type="text/babel">
+    class Main extends React.Component{
+      constructor(params) {
+        super(params)
+
+        this.state = {
+          total: 120,
+          numA: 100,
+          numB: 80
+        }
+
+        this.reduce = this.reduce.bind(this)
+
+      }
+
+      reduce(tag) {
+        if (this.state.total <= 0) {
+          alert('剩余士兵数量不足！')
+        } else {
+          // this.setState({
+          //   total: this.state.total - 20
+          // })
+  
+          // if (tag == 'A') {
+          //   this.setState({
+          //     numA: this.state.numA + 20
+          //   })
+          // } else {
+          //   this.setState({
+          //     numB: this.state.numB + 20
+          //   })
+          // }
+
+          this.setState({
+            total: this.state.total - 20,
+            [`num${tag}`]: this.state[`num${tag}`] + 20
+          })
+        }
+        
+      }
+      
+      render() {
+        return(
+          <div>
+            <h1>剩余士兵数量 {this.state.total}</h1>  
+
+            <General name="A" num={this.state.numA} reduce={this.reduce}/>
+            <General name="B" num={this.state.numB} reduce={this.reduce}/>
+
+          </div>
+        )
+      }
+    }
+
+    class General extends React.Component {
+      constructor(params) {
+        super(params)
+        this.change = this.change.bind(this)
+      }
+
+      change() {
+        this.props.reduce(this.props.name)
+      }
+      
+      render() {
+        return(
+          <div>
+            <h3>将军{this.props.name}有士兵{this.props.num}</h3>  
+            <button onClick={this.change}>调兵</button>
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(<Main/>, document.getElementById('app'))
+  
+  
+  </script>
+</body>
+</html>

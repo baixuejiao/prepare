@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+</style>
+<body>
+    <div id="app">
+        <div class="contain">
+            <button @click='changeon'>登录</button>
+            <button @click='changeoff'>注册</button>
+        </div>
+
+        <!-- 登录组件 -->
+        <tel title="登录" v-show="isShow" @close='hide'>
+            <div>
+                <div>
+                    <input type="text">用户名
+                </div>
+                <div>
+                    <input type="text">密码
+                </div> 
+            </div>
+        </tel>
+        <!-- 注册组件 -->
+       <tel title="注册" v-show="isActive" @close='hide'>
+            <div>
+                <div>
+                    <input type="text">用户名
+                </div>
+                <div>
+                    <input type="text">密码
+                </div>
+                <div>
+                    <input type="text">确认密码
+                </div>   
+            </div>
+        </tel>
+        <template id="temp">
+          <div class='wrapper'>
+              <header>
+                  {{title}}
+                  <span>X</span>
+              </header>
+              <div class="main">
+                  <slot></slot>
+              </div>
+              <footer>
+                  <button @click='closeAll'>{{title}}</button>
+              </footer>
+          </div>
+      </template>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        let vm=new Vue({
+            el:'#app',
+            components:{
+                // 'tel':{
+                //     template:'#temp',
+                //     props:['title'],
+                //     methods:{
+                //         closeAll(){
+                //             this.$emit('close')
+                //         }
+                //     }
+                // }
+            },
+            data:{
+                isShow:false,
+                isActive:false,
+            },
+            methods:{
+                changeoff(){
+                    this.isShow=false
+                    this.isActive=true
+                },
+                changeon(){
+                    this.isShow=true
+                    this.isActive=false
+                },
+                hide(){
+                    this.isShow=false
+                    this.isActive=false
+                }
+            }
+        })
+    </script>
+</body>
+</html>

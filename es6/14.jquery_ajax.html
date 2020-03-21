@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../jquery/jquery.min.js"></script>
+
+  <script>
+    $.ajax({
+      url: 'getData.json',
+      method: 'GET',
+      dataType: 'json',
+      success: function() {
+        console.log('success')
+      },
+      error: function() {
+        console.log('err')
+      }
+    })
+
+    $.get('getData.json',function(){
+      console.log('get1-success')
+
+      $.get('getData.json',function(){
+        console.log('get2-success')
+      }, 'json')
+
+    }, 'json')
+
+
+  
+  </script>
+</body>
+</html>

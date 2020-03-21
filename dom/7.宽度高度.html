@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div{
+      width: 200px;
+      height: 200px;
+      padding: 20px;
+      margin-top: 20px;
+      border: 10px solid red;
+      background: pink;
+      position: absolute;
+      top: 50px;
+    }
+  
+  </style>
+</head>
+<body>
+  <div></div>
+
+
+  <script>
+    // oDiv.style.width 内联样式宽度 有px
+    var oDiv= document.getElementsByTagName('div')[0];
+    console.log(oDiv.style.width) 
+
+    // offsetWidth = width + padding + border
+    console.log(oDiv.offsetWidth) 
+
+    // clientWidth = width + padding
+    console.log(oDiv.clientWidth)
+
+    console.log(oDiv.offsetTop);
+  </script>
+</body>
+</html>
